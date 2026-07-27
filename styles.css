@@ -329,14 +329,22 @@ main { max-width: 1500px; margin: 0 auto; padding: 24px; }
   fill: #4b5563; stroke: none;
 }
 
-.leg-chip-wrap { transform: translate(-50%, -50%); cursor: pointer; z-index: 10 !important; }
+/* No transform here on purpose: positioning is handled by Leaflet's
+   iconAnchor (real pixels), chosen per-chip by the collision search — a
+   CSS percentage transform would resolve against this icon's deliberately
+   zero-size box and silently do nothing (that was the original bug). */
+.leg-chip-wrap { cursor: pointer; z-index: 10 !important; }
 /* Day + duration are fused into a single continuous pill (no gap between
    segments) so it's unambiguous which duration belongs to which day, even
    when two different legs' chips land close together on screen. Kept
    deliberately compact — a small map with five of these needs every one
    to stay out of the next one's way. */
 .leg-chip-row {
-  display: flex;
+  /* inline-flex, not flex: flex is block-level and would stretch to fill
+     the wrapper's full iconSize width (now non-zero, for iconAnchor math),
+     leaving visible dead space inside the selection ring. inline-flex sizes
+     to its own content regardless of the wrapper's width. */
+  display: inline-flex;
   align-items: stretch;
   transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
   border-radius: 8px;
@@ -403,6 +411,10 @@ main { max-width: 1500px; margin: 0 auto; padding: 24px; }
    block (not a separately-positioned marker), and clickable like every
    other day chip. */
 .stay-chip {
+  /* Leaflet's own leaflet.css sets pointer-events:none on .leaflet-tooltip
+     (tooltips are non-interactive by default) — since this chip lives
+     inside one, it needs its own override or clicks never reach it. */
+  pointer-events: auto;
   display: inline-block;
   margin-top: 3px;
   background: #65a30d;

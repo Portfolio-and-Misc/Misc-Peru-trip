@@ -22,41 +22,44 @@ function icon(name, extraClass) {
 --------------------------------------------------------------- */
 const ITINERARIES = {
   original: {
-    summary: { icon: 'suitcase', text: '3 luggage moves total — Lima → Ollantaytambo → Cusco → Lima' },
+    summary: { icon: 'suitcase', text: '2 luggage moves total — Cusco → Ollantaytambo → Cusco' },
     route: {
       stops: [
         { name: 'Lima', sub: '1 night', milestone: false },
-        { name: 'Ollantaytambo', sub: '2 nights', milestone: false },
         { name: 'Cusco', sub: '1 night', milestone: false },
+        { name: 'Ollantaytambo', sub: '2 nights', milestone: false, daytrip: { icon: 'loop', text: 'Sacred Valley + Urubamba horseback' } },
         { name: 'Aguas Calientes', sub: '1 night', milestone: false },
         { name: 'Cusco', sub: '2 nights', milestone: false, daytrip: { icon: 'mountain', text: 'Rainbow Mountain day trip' } },
         { name: 'Lima', sub: '2 nights', milestone: false },
       ],
       connectors: [
-        { icons: ['plane'], label: 'flight + drive (~1.5h)' },
-        { icons: ['car'], label: 'Sacred Valley loop + horseback' },
-        { icons: ['bus', 'train'], label: '~4h' },
+        { icons: ['plane'], label: 'flight (~1.5h)' },
+        { icons: ['bus'], label: '~2h' },
+        { icons: ['train'], label: '~2h' },
         { icons: ['train', 'bus'], label: '~4h' },
         { icons: ['plane'], label: 'flight' },
       ],
     },
     days: [
       { date: 'Nov 6, Fri', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely, pack & prepare for travel'], badge: 'Lima' },
-      { date: 'Nov 7, Sat', loc: 'Lima → Cusco → Ollantaytambo', dot: 'blue',
-        transit: [{ i: 'plane', t: 'Flight to Cusco, land midday' }, { i: 'car', t: 'Drive to Ollantaytambo (~1.5 hrs)' }],
-        bullets: ['Prepare for elevation on arrival', 'Check into Ollantaytambo Airbnb (9,000 ft) — alt: Lamay Lodge'], badge: 'Ollantaytambo' },
-      { date: 'Nov 8, Sun', loc: 'Ollantaytambo', dot: 'blue', transit: [], bullets: ['Fortress and town exploration'], badge: 'Ollantaytambo' },
-      { date: 'Nov 9, Mon', loc: 'Ollantaytambo area → Cusco', dot: 'blue',
-        transit: [{ i: 'car', t: '45 min to Urubamba' }],
-        bullets: ['Pisac, Chinchero, Moray, Maras Salt Mines (if time)', '2–3 hr horseback ride through Sacred Valley & salt mines'],
-        transit2: [{ i: 'car', t: '45 min drive back to Cusco' }], badge: 'Cusco (11,000 ft)' },
-      { date: 'Nov 10, Tue', loc: 'Cusco → Aguas Calientes', dot: 'blue',
-        transit: [{ i: 'bus', t: '2 hr bus' }, { i: 'train', t: '2 hr train (Inca Rail / PeruRail)' }],
-        bullets: ['Explore Aguas Calientes town', 'Optional hot springs', 'Pack small bag only — main luggage stays behind'], badge: 'Aguas Calientes (7,000 ft)' },
+      { date: 'Nov 7, Sat', loc: 'Lima → Cusco', dot: 'blue',
+        transit: [{ i: 'plane', t: 'Fly to Cusco, arrive midday' }],
+        bullets: ['Easy afternoon exploring', 'Cusco Airbnb — alt: Lamay Lodge (breakfast included, hot tub, closer to Urubamba/Ollantaytambo)'],
+        badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 8, Sun', loc: 'Cusco → Ollantaytambo', dot: 'blue',
+        transit: [{ i: 'bus', t: 'Train or bus to Ollantaytambo' }],
+        bullets: ['Fortress and town exploration'], badge: 'Ollantaytambo (9,000 ft)' },
+      { date: 'Nov 9, Mon', loc: 'Sacred Valley → back to Ollantaytambo', dot: 'blue',
+        transit: [{ i: 'car', t: '20 min drive to Urubamba' }],
+        bullets: ['Pisac, Chinchero, Moray, Maras Salt Mines (if time allows)', 'Horseback riding through Sacred Valley & salt mines (horse girl moment)'],
+        transit2: [{ i: 'car', t: '20 min drive back to Ollantaytambo' }], badge: 'Ollantaytambo (9,000 ft)' },
+      { date: 'Nov 10, Tue', loc: 'Ollantaytambo → Aguas Calientes', dot: 'blue',
+        transit: [{ i: 'train', t: 'Scenic train to Aguas Calientes' }],
+        bullets: ['Explore Aguas Calientes town', 'Optional hot springs (or a half-day Machu Picchu this afternoon instead)'], badge: 'Aguas Calientes (7,000 ft)' },
       { date: 'Nov 11, Wed', loc: 'Machu Picchu → Cusco', dot: 'green',
         transit: [],
-        bullets: ['Early entry ticket 7:00 AM (2B) — booked', 'Huayna Picchu hike 10:00 AM (3A) — booked', 'Early checkout — arrange luggage storage at hotel'],
-        transit2: [{ i: 'bus', t: '2 hr bus' }, { i: 'train', t: '2 hr train back to Cusco (~4 hrs)' }], badge: 'Cusco (11,000 ft)' },
+        bullets: ['Early entry — spend the morning exploring Machu Picchu'],
+        transit2: [{ i: 'train', t: 'Train back to Cusco' }], badge: 'Cusco (11,000 ft)' },
       { date: 'Nov 12, Thu', loc: 'Rainbow Mountain ATV Tour', dot: 'orange', transit: [],
         bullets: ['Very early pickup, ~3–4 AM (possibly pushed to Fri)', 'Full-day ATV tour + mountain access, 16,000 ft', 'Return to Cusco'], badge: 'Cusco (11,000 ft)' },
       { date: 'Nov 13, Fri', loc: 'Cusco → Lima', dot: 'blue',
@@ -72,7 +75,7 @@ const ITINERARIES = {
     summary: { icon: 'suitcase', text: '1 luggage move total — Cusco held the whole trip' },
     route: {
       stops: [
-        { name: 'Lima', sub: '3 nights', milestone: false },
+        { name: 'Lima', sub: '1 night', milestone: false },
         { name: 'Cusco', sub: '3 nights', milestone: false, daytrip: { icon: 'loop', text: 'Ollantaytambo + Sacred Valley (Urubamba) day trips' } },
         { name: 'Aguas Calientes', sub: '1 night', milestone: false },
         { name: 'Cusco', sub: '2 nights', milestone: false, daytrip: { icon: 'mountain', text: 'Rainbow Mountain day trip' } },
@@ -84,8 +87,6 @@ const ITINERARIES = {
       ],
     },
     days: [
-      { date: 'Nov 4, Wed', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Evening at leisure'], badge: 'Lima' },
-      { date: 'Nov 5, Thu', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Evening at leisure'], badge: 'Lima' },
       { date: 'Nov 6, Fri', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Pack & prepare for travel'], badge: 'Lima' },
       { date: 'Nov 7, Sat', loc: 'Lima → Cusco', dot: 'blue',
         transit: [{ i: 'plane', t: 'Fly to Cusco, arrive midday' }],
@@ -120,7 +121,7 @@ const ITINERARIES = {
     summary: { icon: 'suitcase', text: '2 luggage moves total — Ollantaytambo → Cusco is the extra one' },
     route: {
       stops: [
-        { name: 'Lima', sub: '3 nights', milestone: false },
+        { name: 'Lima', sub: '1 night', milestone: false },
         { name: 'Ollantaytambo', sub: '3 nights', milestone: false, daytrip: { icon: 'loop', text: 'Moray & Maras + optional horseback' } },
         { name: 'Aguas Calientes', sub: '1 night', milestone: false },
         { name: 'Cusco', sub: '3 nights', milestone: false, daytrip: { icon: 'loop', text: 'Pisac + Rainbow Mountain' } },
@@ -132,8 +133,6 @@ const ITINERARIES = {
       ],
     },
     days: [
-      { date: 'Nov 4, Wed', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Evening at leisure'], badge: 'Lima' },
-      { date: 'Nov 5, Thu', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Evening at leisure'], badge: 'Lima' },
       { date: 'Nov 6, Fri', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Pack & prepare for travel'], badge: 'Lima' },
       { date: 'Nov 7, Sat', loc: 'Lima → Cusco → Ollantaytambo', dot: 'blue',
         transit: [{ i: 'plane', t: 'Fly to Cusco, arrive midday' }, { i: 'car', t: 'Travel to Ollantaytambo (~1.5–2 hrs)' }],
@@ -144,16 +143,16 @@ const ITINERARIES = {
         badge: 'Ollantaytambo (9,000 ft)' },
       { date: 'Nov 9, Mon', loc: 'Moray & Maras → back to Ollantaytambo', dot: 'blue',
         transit: [{ i: 'car', t: '20 min drive to Urubamba' }],
-        bullets: ['2–3 hr horseback ride through Sacred Valley & salt mines (or 5 hr tour incl. Maras + Moray)', 'Return to Ollantaytambo'],
-        badge: 'Ollantaytambo (9,000 ft)' },
+        bullets: ['2–3 hr horseback ride through Sacred Valley & salt mines (or 5 hr tour incl. Maras + Moray)'],
+        transit2: [{ i: 'car', t: '20 min drive back to Ollantaytambo' }], badge: 'Ollantaytambo (9,000 ft)' },
       { date: 'Nov 10, Tue', loc: 'Ollantaytambo → Aguas Calientes', dot: 'blue',
         transit: [{ i: 'train', t: '~2 hr scenic train (Inca Rail / PeruRail)' }],
-        bullets: ['Explore Aguas Calientes town', 'Optional hot springs', 'Pack a small bag — one night only'],
+        bullets: ['Explore Aguas Calientes town', 'Optional hot springs', 'Pack a small bag — main luggage stays at Ollantaytambo Airbnb'],
         badge: 'Aguas Calientes (7,000 ft)' },
       { date: 'Nov 11, Wed', loc: 'Machu Picchu → Cusco', dot: 'green',
         transit: [],
-        bullets: ['Early entry ticket 7:00 AM (2B) — booked', 'Huayna Picchu hike 10:00 AM (3A) — booked', 'Early checkout'],
-        transit2: [{ i: 'train', t: '~2 hr train back to Ollantaytambo' }, { i: 'car', t: '~1.5–2 hr to Cusco (~4 hrs total)' }],
+        bullets: ['Early entry ticket 7:00 AM (2B) — booked', 'Huayna Picchu hike 10:00 AM (3A) — booked', 'Early checkout', '~2 hr train back to Ollantaytambo', 'Pick up bags from Ollantaytambo Airbnb or luggage locker'],
+        transit2: [{ i: 'car', t: '~1.5–2 hr to Cusco (~4 hrs total)' }],
         badge: 'Cusco (11,000 ft)' },
       { date: 'Nov 12, Thu', loc: 'Cusco → Pisac', dot: 'blue',
         transit: [{ i: 'car', t: 'Round trip by car' }],
@@ -258,7 +257,7 @@ const TOWNS = {
 // direction that clears a neighbor for the small version can run straight
 // into the chip cluster for the tall one, so they need different escapes.
 const TOWN_LABEL_DIR = {
-  urubamba: { direction: 'left', offset: [-16, -6] },
+  urubamba: { direction: 'right', offset: [8, -6] },
   maras: { direction: 'bottom', offset: [4, 22] },
   chinchero: { direction: 'bottom', offset: [0, 9] },
   ollanta: {
@@ -282,21 +281,13 @@ function labelPlacement(key, isEmphasized) {
 // green stays reserved for the Machu Picchu day and orange for Rainbow Mountain.
 const MAP_LEGS = {
   original: [
-    // Bulge is signed: positive curves left of the direction of travel,
-    // negative curves right. Reversed pairs (Nov 10 vs Nov 11) already end
-    // up on opposite sides for free since travel direction flips — but
-    // Nov 7 and Nov 10 share the *exact same* Cusco->Ollantaytambo segment
-    // in the *same* direction, so that pair needs an explicit sign flip or
-    // they'd curve the same way and run right on top of each other.
-    { day: 'Nov 7', color: '#2563eb', from: 'cusco', to: 'ollanta', modes: ['car'], duration: '~1.5h', bulge: 0.14, place: 'Ollantaytambo' },
-    { day: 'Nov 9', color: '#7c3aed', from: 'ollanta', stops: ['urubamba'], to: 'cusco', modes: ['car'], duration: '~5h', bulge: 0.40, place: 'Urubamba', via: 'sightseeing loop from Urubamba: Pisac, Chinchero, Moray and Maras + horseback' },
-    // Nov 10's 1st segment (Cusco->Ollantaytambo) conflicts with Nov 7 (same
-    // two points, same direction) — bulged much further out so the two read
-    // as nested arcs instead of overlapping. Its 2nd segment (Ollantaytambo
-    // ->Aguas) conflicts with Nov 11's 1st segment (the reverse of it) —
-    // that pair separates for free via direction alone, so a modest, matched
-    // magnitude is enough.
-    { day: 'Nov 10', color: '#0891b2', from: 'cusco', stops: ['ollanta'], to: 'aguas', modes: ['bus', 'train'], duration: '~4h', bulge: [0.40, 0.16], place: 'Aguas Calientes' },
+    { day: 'Nov 8', color: '#2563eb', from: 'cusco', to: 'ollanta', modes: ['bus'], duration: '~2h', bulge: 0.14, place: 'Ollantaytambo' },
+    // Round trip to Urubamba and back to Ollantaytambo — no relocation to
+    // Cusco that day. Same tuning as the identical leg on Ollantaytambo
+    // Base (same two towns, same map): pinned just past Urubamba on the
+    // return curve, top-left corner on the arc.
+    { day: 'Nov 9', color: '#7c3aed', from: 'ollanta', stops: ['urubamba'], to: 'ollanta', modes: ['car'], duration: '~20m/leg', roundTrip: '~45m total', bulge: [0.30, 0.30], place: 'Urubamba', chipT: 0.6, chipAnchor: { ax: 0, ay: 0 }, via: 'also visits Pisac, Chinchero, Moray and Maras + horseback' },
+    { day: 'Nov 10', color: '#0891b2', from: 'ollanta', to: 'aguas', modes: ['train'], duration: '~2h', bulge: 0.20, place: 'Aguas Calientes' },
     // Large sweeping arc along the bottom of the map instead of cutting
     // through the crowded Ollantaytambo/Sacred Valley cluster in the middle.
     { day: 'Nov 11', color: '#16a34a', from: 'aguas', stops: ['ollanta'], to: 'cusco', modes: ['train', 'bus'], duration: '~4h', bulge: [-0.9, -0.85], place: 'Cusco' },
@@ -322,7 +313,10 @@ const MAP_LEGS = {
     { day: 'Nov 7', color: '#2563eb', from: 'cusco', to: 'ollanta', modes: ['car'], duration: '~1.5h', bulge: 0.14, place: 'Ollantaytambo' },
     // Nov 8 (fortress/town, optional horseback add-on) is a stay-only day,
     // no line. Nov 9 is just Moray/Maras — no Pisac or Chinchero on this day.
-    { day: 'Nov 9', color: '#7c3aed', from: 'ollanta', stops: ['maras'], to: 'ollanta', modes: ['car'], duration: '~20m/leg', roundTrip: '~1h total', bulge: [0.30, 0.30], place: 'Moray & Maras' },
+    // Pinned by hand just past Urubamba on the return leg (t=0.25 was wrong
+    // — for this 2-segment loop that's only halfway to Urubamba, not past
+    // it) with its top-left corner on the arc, per the exact spot marked.
+    { day: 'Nov 9', color: '#7c3aed', from: 'ollanta', stops: ['urubamba'], to: 'ollanta', modes: ['car'], duration: '~20m/leg', roundTrip: '~40m total', bulge: [0.30, 0.30], place: 'Moray & Maras', chipT: 0.6, chipAnchor: { ax: 0, ay: 0 } },
     { day: 'Nov 10', color: '#0891b2', from: 'ollanta', to: 'aguas', modes: ['train'], duration: '~2h', bulge: 0.20, place: 'Aguas Calientes' },
     // Large sweeping arc along the bottom of the map instead of cutting
     // through the crowded Ollantaytambo/Sacred Valley cluster in the middle.
@@ -338,7 +332,7 @@ const MAP_LEGS = {
 // and stay visually secondary). Cusco is visited twice non-contiguously in
 // the Original plan, so it lists both stretches.
 const MAP_STAYS = {
-  original: { cusco: 'Nov 9 & 11–12', ollanta: 'Nov 7–8', aguas: 'Nov 10' },
+  original: { cusco: 'Nov 7 & 11–12', ollanta: 'Nov 8–9', aguas: 'Nov 10' },
   cusco: { cusco: 'Nov 7–9 & 11–12', aguas: 'Nov 10' },
   ollanta: { ollanta: 'Nov 7–9', aguas: 'Nov 10', cusco: 'Nov 11–13' },
 };
@@ -352,7 +346,9 @@ const MAP_HOME = { original: 'cusco', cusco: 'cusco', ollanta: 'ollanta' };
 // day-only chip pinned at that town instead of a travel line, so every day
 // in the itinerary is represented somewhere on the map, not just travel days.
 const MAP_STAY_DAYS = {
-  original: [{ day: 'Nov 8', at: 'ollanta' }],
+  // No pure no-travel day anymore — every day Nov 7-12 involves some travel
+  // (even Nov 9 is a round trip, not a stay-put day).
+  original: [],
   // Cusco Base has no pure no-travel day anymore — Nov 8 is now a real
   // Ollantaytambo day trip, not a stay-only day.
   cusco: [],
@@ -436,33 +432,52 @@ function estimateChipBox(leg) {
   return { w: Math.max(90, leftW + rightW), h: leg.roundTrip ? 46 : 32 };
 }
 
+// Which point of the chip's box sits on the arc — (0.5,0.5) is dead center,
+// (0,0.5) is the left edge, (0.5,0) is the top edge, etc. Searching across
+// *all* of these (not just center) is what actually gives the chip freedom
+// to land anywhere on the line, using whichever side reads clearest,
+// instead of being forced to straddle the point evenly in both directions.
+const CHIP_ANCHORS = [
+  { ax: 0.5, ay: 0.5 }, { ax: 0.15, ay: 0.5 }, { ax: 0.85, ay: 0.5 },
+  { ax: 0.5, ay: 0.15 }, { ax: 0.5, ay: 0.85 },
+  { ax: 0.15, ay: 0.15 }, { ax: 0.85, ay: 0.15 }, { ax: 0.15, ay: 0.85 }, { ax: 0.85, ay: 0.85 },
+];
+
 // Town names must never move and must never be covered — so instead of a
-// fixed 65%-along-the-path position, this samples several points along the
-// leg's path and picks the first one whose estimated chip box doesn't
-// overlap any town label's *actual measured* screen rect. Falls back to
-// whichever sampled point overlaps the least, if none are fully clear.
-function findClearLatLng(map, pts, avoidRects, boxW, boxH) {
+// fixed 65%-along-the-path position centered on the line, this searches
+// both *where along the path* the chip sits and *which point of the chip's
+// own box* touches the arc there, and picks the first combination whose box
+// doesn't overlap any town label's *actual measured* screen rect. Falls
+// back to whichever combination overlaps the least, if none are fully clear.
+function findClearChipPlacement(map, pts, avoidRects, boxW, boxH) {
   const fractions = [];
   for (let t = 0.62; t <= 0.92; t += 0.03) fractions.push(t);
   for (let t = 0.58; t >= 0.12; t -= 0.03) fractions.push(t);
-  let best = pts[Math.floor(pts.length * 0.65)];
+
+  let best = null;
   let bestOverlap = Infinity;
-  for (const t of fractions) {
-    const idx = Math.min(pts.length - 1, Math.max(0, Math.floor(pts.length * t)));
-    const latlng = pts[idx];
-    const pt = map.latLngToContainerPoint(latlng);
-    const box = { left: pt.x - boxW / 2, right: pt.x + boxW / 2, top: pt.y - boxH / 2, bottom: pt.y + boxH / 2 };
-    let overlapArea = 0;
-    for (const r of avoidRects) {
-      if (!rectsOverlap(box, r)) continue;
-      const ox = Math.min(box.right, r.right) - Math.max(box.left, r.left);
-      const oy = Math.min(box.bottom, r.bottom) - Math.max(box.top, r.top);
-      overlapArea += Math.max(0, ox) * Math.max(0, oy);
+  for (const anchor of CHIP_ANCHORS) {
+    for (const t of fractions) {
+      const idx = Math.min(pts.length - 1, Math.max(0, Math.floor(pts.length * t)));
+      const latlng = pts[idx];
+      const pt = map.latLngToContainerPoint(latlng);
+      const box = {
+        left: pt.x - boxW * anchor.ax, right: pt.x + boxW * (1 - anchor.ax),
+        top: pt.y - boxH * anchor.ay, bottom: pt.y + boxH * (1 - anchor.ay),
+      };
+      let overlapArea = 0;
+      for (const r of avoidRects) {
+        if (!rectsOverlap(box, r)) continue;
+        const ox = Math.min(box.right, r.right) - Math.max(box.left, r.left);
+        const oy = Math.min(box.bottom, r.bottom) - Math.max(box.top, r.top);
+        overlapArea += Math.max(0, ox) * Math.max(0, oy);
+      }
+      const candidate = { latlng, anchor };
+      if (overlapArea === 0) return candidate;
+      if (overlapArea < bestOverlap) { bestOverlap = overlapArea; best = candidate; }
     }
-    if (overlapArea === 0) return latlng;
-    if (overlapArea < bestOverlap) { bestOverlap = overlapArea; best = latlng; }
   }
-  return best;
+  return best || { latlng: pts[Math.floor(pts.length * 0.65)], anchor: CHIP_ANCHORS[0] };
 }
 
 // Clicking a day chip on the map highlights + scrolls to that day's timeline
@@ -597,10 +612,24 @@ function buildMapMarkers(legKey) {
     const whiteLine = L.polyline(pts, { color: '#ffffff', weight: 6.5, opacity: 0.9, lineCap: 'round', dashArray: dash }).addTo(map);
     const colorLine = L.polyline(pts, { color: leg.color, weight: 4, opacity: 1, lineCap: 'round', dashArray: dash }).addTo(map);
     const { w, h } = estimateChipBox(leg);
-    const mid = findClearLatLng(map, pts, avoidRects, w, h);
+    // A leg can pin its own {chipT, chipAnchor} to override the auto-search
+    // — useful when the "least overlap" fallback picks a worse spot than a
+    // known-good one a human already found by eye.
+    let mid, anchor;
+    if (leg.chipAnchor) {
+      const idx = Math.min(pts.length - 1, Math.max(0, Math.floor(pts.length * (leg.chipT ?? 0.65))));
+      mid = pts[idx];
+      anchor = leg.chipAnchor;
+    } else {
+      ({ latlng: mid, anchor } = findClearChipPlacement(map, pts, avoidRects, w, h));
+    }
     const dId = dayIdOf(leg.day);
+    // iconAnchor is real pixels (unlike CSS transform: translate(-50%,-50%),
+    // which — on a deliberately zero-size icon box — resolves percentages
+    // against that zero size and does nothing) so this is what actually
+    // lets the chosen anchor point land exactly on the arc.
     const marker = L.marker(mid, {
-      icon: L.divIcon({ className: 'leg-chip-wrap', html: legChipHtml(leg), iconSize: [0, 0] }),
+      icon: L.divIcon({ className: 'leg-chip-wrap', html: legChipHtml(leg), iconSize: [w, h], iconAnchor: [w * anchor.ax, h * anchor.ay] }),
       interactive: true,
     }).addTo(map).on('click', (e) => { L.DomEvent.stopPropagation(e); setActiveDay(legKey, dId); });
     legMarkersByDay[legKey][dId] = marker;
@@ -608,12 +637,16 @@ function buildMapMarkers(legKey) {
   });
 
   // Stay-only-day chips are plain HTML inside the town's tooltip (added
-  // above), not Leaflet markers — the tooltip DOM already exists (permanent
-  // tooltips render synchronously), so bind clicks directly.
+  // above), not Leaflet markers. Permanent tooltips don't actually render
+  // their DOM synchronously with bindTooltip() (that assumption was wrong
+  // and silently broke this) — deferring a tick is what makes the query
+  // reliably find the element.
   Object.values(stayDaysByTown).flat().forEach(sd => {
     const dId = dayIdOf(sd.day);
-    const chip = document.querySelector(`#${mapId} .stay-chip[data-day-id="${dId}"]`);
-    if (chip) chip.addEventListener('click', (e) => { e.stopPropagation(); setActiveDay(legKey, dId); });
+    setTimeout(() => {
+      const chip = document.querySelector(`#${mapId} .stay-chip[data-day-id="${dId}"]`);
+      if (chip) chip.addEventListener('click', (e) => { e.stopPropagation(); setActiveDay(legKey, dId); });
+    }, 0);
   });
 
   // Clicking empty map space (not a chip, both of which stop propagation
