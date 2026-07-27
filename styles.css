@@ -1,0 +1,451 @@
+:root {
+  --cream: #faf8f2;
+  --card-border: #e8e2d3;
+  --page-bg: #f3f1ea;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --blue: #2563eb;
+  --blue-bg: #dbeafe;
+  --blue-text: #1d4ed8;
+  --green: #16a34a;
+  --green-bg: #dcfce7;
+  --green-text: #15803d;
+  --orange: #d97706;
+  --orange-bg: #fef3c7;
+  --orange-text: #b45309;
+  --line: #cbc6b6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.icon { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; vertical-align: -3px; }
+.icon.filled { fill: currentColor; stroke: none; }
+
+/* ---------- Header / Tabs ---------- */
+header.site-header {
+  padding: 28px 24px 0;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+header.site-header h1 { margin: 0 0 4px; font-size: 26px; }
+header.site-header p.subtitle { margin: 0 0 20px; color: var(--muted); }
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid var(--card-border);
+}
+.tab-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  border-radius: 8px 8px 0 0;
+}
+.tab-btn:hover { color: var(--text); background: #ffffff80; }
+.tab-btn.active { color: var(--blue-text); border-bottom-color: var(--blue); }
+
+main { max-width: 1500px; margin: 0 auto; padding: 24px; }
+.route-flow { max-width: 1080px; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ---------- Summary pill ---------- */
+.summary-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue-bg);
+  color: var(--blue-text);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+/* ---------- Section headings ---------- */
+.section-heading {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 32px 0 12px;
+}
+.section-heading:first-of-type { margin-top: 0; }
+
+/* ---------- Route chip diagram ---------- */
+.route-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
+  background: var(--cream);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 8px;
+}
+.route-stop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 110px;
+  text-align: center;
+  position: relative;
+}
+.route-stop .stop-chip {
+  background: #fff;
+  border: 1.5px solid var(--blue);
+  color: var(--blue-text);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+.route-stop.milestone .stop-chip { border-color: var(--green); color: var(--green-text); }
+.route-stop .stop-sub { font-size: 11.5px; color: var(--muted); }
+.route-daytrip {
+  margin-top: 6px;
+  font-size: 11px;
+  background: var(--orange-bg);
+  color: var(--orange-text);
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.route-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px;
+  color: var(--muted);
+  min-width: 70px;
+}
+.route-connector .conn-icons { display: flex; align-items: center; gap: 3px; color: var(--blue); }
+.route-connector .conn-line { width: 100%; border-top: 2px dashed var(--line); margin: 2px 0; }
+.route-connector .conn-label { font-size: 10.5px; white-space: nowrap; }
+
+/* ---------- Side-by-side map + timeline ---------- */
+.itinerary-columns {
+  display: grid;
+  grid-template-columns: minmax(460px, 1.7fr) minmax(320px, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.map-col { position: sticky; top: 16px; }
+@media (max-width: 1150px) {
+  .itinerary-columns { grid-template-columns: 1fr; }
+  .map-col { position: static; }
+}
+
+/* ---------- Timeline ---------- */
+.timeline { margin-top: 8px; }
+.day-row { display: flex; gap: 14px; position: relative; cursor: pointer; }
+.day-row + .day-row { margin-top: 16px; }
+.day-row.active .day-card {
+  box-shadow: 0 0 0 3px #111827, 0 10px 24px rgba(0,0,0,0.18);
+  background: var(--blue-bg);
+  transition: box-shadow .2s ease, background .2s ease;
+}
+.day-row.active .day-dot { box-shadow: 0 0 0 3px #111827; }
+.dot-col { width: 30px; flex-shrink: 0; position: relative; }
+.day-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid var(--blue);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.day-row[data-dot="green"] .day-dot { border-color: var(--green); color: var(--green); }
+.day-row[data-dot="orange"] .day-dot { border-color: var(--orange); color: var(--orange); }
+.day-row:not(:last-child) .dot-col::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 14px;
+  bottom: -16px;
+  border-left: 2px dotted var(--line);
+}
+.day-card {
+  flex: 1;
+  background: var(--cream);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 18px 22px;
+  min-width: 0;
+}
+.day-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.day-card h3 { margin: 0; font-size: 17px; }
+.day-card .loc-label { color: var(--muted); font-size: 13.5px; text-align: right; }
+.transit-list, .bullet-list { margin: 0 0 6px; padding-left: 0; list-style: none; }
+.transit-list li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--blue-text);
+  font-weight: 600;
+  font-size: 14.5px;
+  margin-bottom: 6px;
+}
+.bullet-list li {
+  position: relative;
+  padding-left: 16px;
+  color: #374151;
+  font-size: 14.5px;
+  margin-bottom: 5px;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #9ca3af;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--blue-bg);
+  color: var(--blue-text);
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 6px 13px;
+  border-radius: 10px;
+  margin-top: 8px;
+}
+
+/* ---------- Map section ---------- */
+.map-style-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.style-btn {
+  appearance: none;
+  cursor: pointer;
+  border: 1.5px solid var(--card-border);
+  background: #fff;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+.style-btn.active { border-color: var(--blue); color: var(--blue-text); background: var(--blue-bg); }
+.style-btn .opt-desc { display: block; font-weight: 400; font-size: 11px; color: var(--muted); margin-top: 1px; }
+.style-btn.active .opt-desc { color: var(--blue-text); opacity: .8; }
+
+.map-wrap {
+  background: #fff;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 14px;
+}
+.leaflet-map {
+  width: 100%;
+  height: 620px;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 0;
+}
+.map-note { font-size: 12.5px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+/* Town names must never be covered by a chip, even when their boxes
+   spatially overlap (e.g. a day-trip chip landing right on the destination
+   town it's heading to). Forcing the whole tooltip pane above the marker
+   pane guarantees this regardless of any individual z-index on a chip. */
+.leaflet-tooltip-pane { z-index: 700 !important; }
+
+/* --- Leaflet overlay styling --- */
+.town-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 1px 1px 3px rgba(255,255,255,.95);
+}
+.town-label::before { display: none !important; }
+/* Every stopped-at town is emphasized — bold and dark, never muted — with
+   only one distinction: overnight bases are the big, dominant labels, and
+   every other real stop (a day-trip destination or a transfer waypoint) is
+   the same bold style, just one size down. The icon + date range sits
+   above the (bigger) town name, matching a small caption over a headline. */
+.town-label.emphasized .town-name { font-size: 19px; font-weight: 800; color: #111827; line-height: 1.15; }
+.town-label.emphasized .town-nights {
+  font-size: 12px; font-weight: 700; color: #4b5563; text-transform: uppercase; letter-spacing: .03em;
+  display: flex; align-items: center; gap: 4px; margin-bottom: 1px;
+}
+.town-label.stop { font-size: 14.5px; font-weight: 700; color: #1f2328; }
+.town-label .home-icon {
+  width: 14px; height: 14px;
+  stroke: #b45309;
+}
+.town-label .moon-icon {
+  width: 12px; height: 12px;
+  fill: #4b5563; stroke: none;
+}
+
+.leg-chip-wrap { transform: translate(-50%, -50%); cursor: pointer; z-index: 10 !important; }
+/* Day + duration are fused into a single continuous pill (no gap between
+   segments) so it's unambiguous which duration belongs to which day, even
+   when two different legs' chips land close together on screen. Kept
+   deliberately compact — a small map with five of these needs every one
+   to stay out of the next one's way. */
+.leg-chip-row {
+  display: flex;
+  align-items: stretch;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.22);
+}
+.leg-chip-wrap.active .leg-chip-row {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px #111827, 0 4px 12px rgba(0,0,0,0.4);
+}
+.leg-chip-wrap.active { z-index: 20 !important; }
+.leg-chip-wrap.dimmed .leg-chip-row { opacity: 0.3; }
+.day-pill {
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 8px 0 0 8px;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+.pill-date { font-weight: 800; font-size: 11px; line-height: 1.2; }
+.pill-place { font-weight: 600; font-size: 8.5px; line-height: 1.2; opacity: 0.9; }
+.dur-pill {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  color: #374151;
+  font-weight: 600;
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 0 8px 8px 0;
+  border: 1.25px solid var(--dur-color, #999);
+  border-left: none;
+  white-space: nowrap;
+}
+.dur-main { display: flex; align-items: center; gap: 3px; }
+.dur-pill .leg-icon { width: 12px; height: 12px; stroke: var(--dur-color, #374151); }
+/* Only round-trip (there-and-back same day) legs get a second line — the
+   fused pill grows taller and stacks the one-way time over the round-trip
+   total instead of sitting on one row. */
+.dur-pill.has-roundtrip {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: 3px 8px;
+}
+.dur-roundtrip { font-size: 8.5px; font-weight: 500; color: #6b7280; }
+.leg-via {
+  margin-top: 3px;
+  text-align: center;
+  font-size: 11.5px;
+  font-style: italic;
+  color: #4b5563;
+  background: #fff;
+  padding: 1px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+/* Stay-only days (no travel): a small solid pill with just the date —
+   nothing else — living directly under the town's own name in its label
+   block (not a separately-positioned marker), and clickable like every
+   other day chip. */
+.stay-chip {
+  display: inline-block;
+  margin-top: 3px;
+  background: #65a30d;
+  color: #fff;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 4px 11px;
+  border-radius: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.22);
+  transition: transform .15s ease, box-shadow .15s ease;
+  /* Override the white multi-directional text-shadow inherited from the
+     parent .town-label (a halo meant for dark text against busy map tiles)
+     — on white text over a solid color it just doubles/blurs the letters. */
+  text-shadow: none;
+}
+.stay-chip.active {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px #111827, 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.map-panel { display: none; }
+.map-panel.active { display: block; }
+
+.map-placeholder {
+  background: var(--cream);
+  border: 1px dashed var(--card-border);
+  border-radius: 16px;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+footer.site-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 30px 24px 40px;
+}
+
+@media (max-width: 640px) {
+  .route-flow { padding: 14px; }
+  .day-card { padding: 14px 16px; }
+}

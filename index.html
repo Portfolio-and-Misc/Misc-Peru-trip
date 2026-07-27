@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peru Trip Itinerary</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Peru Trip — Nov 2026</h1>
+  <p class="subtitle">Three itinerary options: the original plan, a Cusco-based version, and an Ollantaytambo-based version.</p>
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" data-tab="original">Original Plan</button>
+    <button class="tab-btn" data-tab="cusco">Cusco Base</button>
+    <button class="tab-btn" data-tab="ollanta">Ollantaytambo Base</button>
+  </div>
+</header>
+
+<main>
+  <section class="tab-panel active" id="panel-original">
+    <div id="summary-original"></div>
+    <h2 class="section-heading">Route at a glance</h2>
+    <div id="route-original"></div>
+    <div class="itinerary-columns">
+      <div class="map-col">
+        <h2 class="section-heading">Map</h2>
+        <div id="map-original"></div>
+      </div>
+      <div class="timeline-col">
+        <h2 class="section-heading">Day-by-day itinerary</h2>
+        <div class="timeline" id="timeline-original"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-cusco">
+    <div id="summary-cusco"></div>
+    <h2 class="section-heading">Route at a glance</h2>
+    <div id="route-cusco"></div>
+    <div class="itinerary-columns">
+      <div class="map-col">
+        <h2 class="section-heading">Map</h2>
+        <div id="map-cusco"></div>
+      </div>
+      <div class="timeline-col">
+        <h2 class="section-heading">Day-by-day itinerary</h2>
+        <div class="timeline" id="timeline-cusco"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-ollanta">
+    <div id="summary-ollanta"></div>
+    <h2 class="section-heading">Route at a glance</h2>
+    <div id="route-ollanta"></div>
+    <div class="itinerary-columns">
+      <div class="map-col">
+        <h2 class="section-heading">Map</h2>
+        <div id="map-ollanta"></div>
+      </div>
+      <div class="timeline-col">
+        <h2 class="section-heading">Day-by-day itinerary</h2>
+        <div class="timeline" id="timeline-ollanta"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">Peru trip planning — Nov 2026</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="app.js"></script>
+</body>
+</html>
