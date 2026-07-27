@@ -346,12 +346,9 @@ const MAP_HOME = { original: 'cusco', cusco: 'cusco', ollanta: 'ollanta' };
 // day-only chip pinned at that town instead of a travel line, so every day
 // in the itinerary is represented somewhere on the map, not just travel days.
 const MAP_STAY_DAYS = {
-  // No pure no-travel day anymore — every day Nov 7-12 involves some travel
-  // (even Nov 9 is a round trip, not a stay-put day).
-  original: [],
-  // Cusco Base has no pure no-travel day anymore — Nov 8 is now a real
-  // Ollantaytambo day trip, not a stay-only day.
-  cusco: [],
+  // Nov 7 is arrival day — land in Cusco, no further local travel that day.
+  original: [{ day: 'Nov 7', at: 'cusco' }],
+  cusco: [{ day: 'Nov 7', at: 'cusco' }],
   ollanta: [{ day: 'Nov 8', at: 'ollanta' }],
 };
 
