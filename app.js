@@ -76,9 +76,9 @@ const ITINERARIES = {
     route: {
       stops: [
         { name: 'Lima', sub: '1 night', milestone: false },
-        { name: 'Cusco', sub: '3 nights', milestone: false, daytrip: { icon: 'loop', text: 'Ollantaytambo + Sacred Valley (Urubamba) day trips' } },
+        { name: 'Cusco', sub: '3 nights', milestone: false, daytrip: { icon: 'loop', text: 'Sacred Valley (Urubamba) horseback ride day trip' } },
         { name: 'Aguas Calientes', sub: '1 night', milestone: false },
-        { name: 'Cusco', sub: '2 nights', milestone: false, daytrip: { icon: 'mountain', text: 'Rainbow Mountain day trip' } },
+        { name: 'Cusco', sub: '3 nights', milestone: false, daytrip: { icon: 'loop', text: 'Pisac + Rainbow Mountain day trips' } },
       ],
       connectors: [
         { icons: ['plane'], label: 'flight (~1.5h)' },
@@ -90,29 +90,30 @@ const ITINERARIES = {
       { date: 'Nov 6, Fri', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Pack & prepare for travel'], badge: 'Lima' },
       { date: 'Nov 7, Sat', loc: 'Lima → Cusco', dot: 'blue',
         transit: [{ i: 'plane', t: 'Fly to Cusco, arrive midday' }],
-        bullets: ['Easy afternoon exploring — light walk, no exertion'], badge: 'Cusco (11,000 ft)' },
-      { date: 'Nov 8, Sun', loc: 'Cusco → Ollantaytambo day trip', dot: 'blue',
-        transit: [{ i: 'bus', t: '~2 hr bus or train to Ollantaytambo' }],
-        bullets: ['Fortress and town exploration'],
-        transit2: [{ i: 'bus', t: '~2 hrs back to Cusco' }], badge: 'Cusco (11,000 ft)' },
+        bullets: ['Easy afternoon exploring — light walk, no exertion', 'Visit Cusco Market'], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 8, Sun', loc: 'Cusco', dot: 'blue',
+        transit: [],
+        bullets: ['Explore Cusco — easy day', 'Temple of the Sun (Qorikancha)', 'Temple of the Moon'], badge: 'Cusco (11,000 ft)' },
       { date: 'Nov 9, Mon', loc: 'Sacred Valley day trip', dot: 'blue',
         transit: [{ i: 'car', t: '45 min to Urubamba' }],
         bullets: ['2–3 hr horseback ride through Sacred Valley & salt mines (or 5 hr tour incl. Maras + Moray)'],
         transit2: [{ i: 'car', t: '45 min drive back to Cusco' }], badge: 'Cusco (11,000 ft)' },
       { date: 'Nov 10, Tue', loc: 'Cusco → Aguas Calientes', dot: 'blue',
-        transit: [{ i: 'bus', t: '2 hr bus to Ollantaytambo' }, { i: 'train', t: '2 hr train to Aguas Calientes' }],
+        transit: [{ i: 'bus', t: '2 hr bus to Ollantaytambo' }, { t: 'Explore Ollantaytambo ruins' }, { i: 'train', t: '2 hr train to Aguas Calientes' }],
         bullets: ['Explore Aguas Calientes town', 'Optional hot springs', 'Pack small bag only — main luggage stays at Cusco Airbnb'], badge: 'Aguas Calientes (7,000 ft)' },
       { date: 'Nov 11, Wed', loc: 'Machu Picchu → Cusco', dot: 'green',
         transit: [],
         bullets: ['Early entry ticket 7:00 AM (2B) — booked', 'Huayna Picchu hike 10:00 AM (3A) — booked', 'Early checkout'],
         transit2: [{ i: 'train', t: '2 hr train' }, { i: 'bus', t: '+ 2 hr bus back to Cusco (~4 hrs)' }], badge: 'Cusco (11,000 ft)' },
-      { date: 'Nov 12, Thu', loc: 'Rainbow Mountain ATV Tour', dot: 'orange', transit: [],
-        bullets: ['Very early pickup, ~3–4 AM (possibly pushed to Fri)', 'Full-day ATV tour + mountain access, 16,000 ft', 'Return to Cusco'], badge: 'Cusco (11,000 ft)' },
-      { date: 'Nov 13, Fri', loc: 'Cusco → Lima', dot: 'blue',
-        transit: [{ i: 'plane', t: 'Flight Cusco → Lima (or Rainbow Mtn today if pushed)' }],
-        bullets: ['Relax, enjoy final evening in Lima'], badge: 'Lima' },
-      { date: 'Nov 14, Sat', loc: 'Lima', dot: 'blue', transit: [],
-        bullets: ['Last full day — explore, shop, revisit favorites', 'Depart Lima ~11:00 PM (Elle departs 11/14 12 PM)'], badge: 'In flight' },
+      { date: 'Nov 12, Thu', loc: 'Cusco & Pisac day trip', dot: 'blue',
+        transit: [{ i: 'car', t: '~1 hr to Pisac' }],
+        bullets: ['Visit Pisac archaeological park', 'Pisac market and Tambomachay'],
+        transit2: [{ i: 'car', t: '~1 hr drive back to Cusco' }], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 13, Fri', loc: 'Rainbow Mountain ATV Tour', dot: 'orange', transit: [],
+        bullets: ['Very early pickup, ~3–4 AM', 'Full-day ATV tour + mountain access, 16,000 ft', 'Return to Cusco'], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 14, Sat', loc: 'Cusco → Lima', dot: 'blue',
+        transit: [{ i: 'plane', t: 'Flight Cusco → Lima' }],
+        bullets: ['Enjoy your last day in Lima', 'Depart Lima ~11:00 PM'], badge: 'In flight' },
       { date: 'Nov 15, Sun', loc: 'Arrive USA', dot: 'blue', transit: [], bullets: ['Arrive ~9:30 AM'], badge: null },
     ],
   },
@@ -163,6 +164,56 @@ const ITINERARIES = {
       { date: 'Nov 14, Sat', loc: 'Lima or Cusco → USA', dot: 'blue',
         transit: [{ i: 'plane', t: 'Flight to USA (via Lima, or direct from Cusco)' }],
         bullets: ['Enjoy your last day — explore, shop, revisit favorites', 'Depart ~11:00 PM (Elle departs 11/14 12 PM)'], badge: 'In flight' },
+      { date: 'Nov 15, Sun', loc: 'Arrive USA', dot: 'blue', transit: [], bullets: ['Arrive ~9:30 AM'], badge: null },
+    ],
+  },
+
+  // Archived: Cusco Base as it stood before the Nov-27 rewrite (Ollantaytambo
+  // was its own round-trip day; Rainbow Mountain was Nov 12; no Pisac day).
+  // Kept only so the old plan stays viewable under "Archived" — not shown
+  // as a main tab.
+  'cusco-archive': {
+    summary: { icon: 'suitcase', text: '1 luggage move total — Cusco held the whole trip' },
+    route: {
+      stops: [
+        { name: 'Lima', sub: '1 night', milestone: false },
+        { name: 'Cusco', sub: '3 nights', milestone: false, daytrip: { icon: 'loop', text: 'Ollantaytambo + Sacred Valley (Urubamba) day trips' } },
+        { name: 'Aguas Calientes', sub: '1 night', milestone: false },
+        { name: 'Cusco', sub: '2 nights', milestone: false, daytrip: { icon: 'mountain', text: 'Rainbow Mountain day trip' } },
+      ],
+      connectors: [
+        { icons: ['plane'], label: 'flight (~1.5h)' },
+        { icons: ['bus', 'train'], label: '~4h' },
+        { icons: ['train', 'bus'], label: '~4h' },
+      ],
+    },
+    days: [
+      { date: 'Nov 6, Fri', loc: 'Lima', dot: 'blue', transit: [], bullets: ['Work remotely', 'Pack & prepare for travel'], badge: 'Lima' },
+      { date: 'Nov 7, Sat', loc: 'Lima → Cusco', dot: 'blue',
+        transit: [{ i: 'plane', t: 'Fly to Cusco, arrive midday' }],
+        bullets: ['Easy afternoon exploring — light walk, no exertion'], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 8, Sun', loc: 'Cusco → Ollantaytambo day trip', dot: 'blue',
+        transit: [{ i: 'bus', t: '~2 hr bus or train to Ollantaytambo' }],
+        bullets: ['Fortress and town exploration'],
+        transit2: [{ i: 'bus', t: '~2 hrs back to Cusco' }], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 9, Mon', loc: 'Sacred Valley day trip', dot: 'blue',
+        transit: [{ i: 'car', t: '45 min to Urubamba' }],
+        bullets: ['2–3 hr horseback ride through Sacred Valley & salt mines (or 5 hr tour incl. Maras + Moray)'],
+        transit2: [{ i: 'car', t: '45 min drive back to Cusco' }], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 10, Tue', loc: 'Cusco → Aguas Calientes', dot: 'blue',
+        transit: [{ i: 'bus', t: '2 hr bus to Ollantaytambo' }, { i: 'train', t: '2 hr train to Aguas Calientes' }],
+        bullets: ['Explore Aguas Calientes town', 'Optional hot springs', 'Pack small bag only — main luggage stays at Cusco Airbnb'], badge: 'Aguas Calientes (7,000 ft)' },
+      { date: 'Nov 11, Wed', loc: 'Machu Picchu → Cusco', dot: 'green',
+        transit: [],
+        bullets: ['Early entry ticket 7:00 AM (2B) — booked', 'Huayna Picchu hike 10:00 AM (3A) — booked', 'Early checkout'],
+        transit2: [{ i: 'train', t: '2 hr train' }, { i: 'bus', t: '+ 2 hr bus back to Cusco (~4 hrs)' }], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 12, Thu', loc: 'Rainbow Mountain ATV Tour', dot: 'orange', transit: [],
+        bullets: ['Very early pickup, ~3–4 AM (possibly pushed to Fri)', 'Full-day ATV tour + mountain access, 16,000 ft', 'Return to Cusco'], badge: 'Cusco (11,000 ft)' },
+      { date: 'Nov 13, Fri', loc: 'Cusco → Lima', dot: 'blue',
+        transit: [{ i: 'plane', t: 'Flight Cusco → Lima (or Rainbow Mtn today if pushed)' }],
+        bullets: ['Relax, enjoy final evening in Lima'], badge: 'Lima' },
+      { date: 'Nov 14, Sat', loc: 'Lima', dot: 'blue', transit: [],
+        bullets: ['Last full day — explore, shop, revisit favorites', 'Depart Lima ~11:00 PM (Elle departs 11/14 12 PM)'], badge: 'In flight' },
       { date: 'Nov 15, Sun', loc: 'Arrive USA', dot: 'blue', transit: [], bullets: ['Arrive ~9:30 AM'], badge: null },
     ],
   },
@@ -221,9 +272,9 @@ function renderTimeline(el, days) {
           <h3>${day.date}</h3>
           <span class="loc-label">${day.loc}</span>
         </div>
-        ${day.transit && day.transit.length ? `<ul class="transit-list">${day.transit.map(t => `<li>${icon(t.i)}<span>${t.t}</span></li>`).join('')}</ul>` : ''}
+        ${day.transit && day.transit.length ? `<ul class="transit-list">${day.transit.map(t => t.i ? `<li>${icon(t.i)}<span>${t.t}</span></li>` : `<li class="bullet-note">${t.t}</li>`).join('')}</ul>` : ''}
         ${day.bullets && day.bullets.length ? `<ul class="bullet-list">${day.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
-        ${day.transit2 && day.transit2.length ? `<ul class="transit-list">${day.transit2.map(t => `<li>${icon(t.i)}<span>${t.t}</span></li>`).join('')}</ul>` : ''}
+        ${day.transit2 && day.transit2.length ? `<ul class="transit-list">${day.transit2.map(t => t.i ? `<li>${icon(t.i)}<span>${t.t}</span></li>` : `<li class="bullet-note">${t.t}</li>`).join('')}</ul>` : ''}
         ${day.badge ? `<div class="badge">${icon('pin')}<span>${day.badge}</span></div>` : ''}
       </div>
     </div>`;
@@ -295,6 +346,21 @@ const MAP_LEGS = {
   ],
 
   cusco: [
+    // Sacred Valley day trip via Urubamba (horseback to the salt mines /
+    // Moray/Maras). Nov 8 is now a stay-only day in Cusco (see MAP_STAY_DAYS).
+    { day: 'Nov 9', color: '#7c3aed', from: 'cusco', stops: ['urubamba'], to: 'cusco', modes: ['car'], duration: '~45m/leg', roundTrip: '~1.5h total', bulge: [-0.35, -0.35], place: 'Urubamba' },
+    // Relocation to Aguas Calientes via a stop in Ollantaytambo (not a
+    // separate round-trip day anymore — Ollantaytambo is just explored
+    // during the transfer).
+    { day: 'Nov 10', color: '#0891b2', from: 'cusco', stops: ['ollanta'], to: 'aguas', modes: ['bus', 'train'], duration: '~4h', bulge: [-0.40, 0.16], place: 'Aguas Calientes' },
+    // Large sweeping arc along the bottom instead of cutting through the middle.
+    { day: 'Nov 11', color: '#16a34a', from: 'aguas', stops: ['ollanta'], to: 'cusco', modes: ['train', 'bus'], duration: '~4h', bulge: [-0.9, -0.85], place: 'Cusco' },
+    // Cusco -> Pisac day trip (new).
+    { day: 'Nov 12', color: '#be185d', from: 'cusco', stops: ['pisac'], to: 'cusco', modes: ['car'], duration: '~1h', roundTrip: '~2h total', bulge: [0.20, 0.20], place: 'Pisac' },
+    { day: 'Nov 13', color: '#d97706', from: 'cusco', to: 'rainbow', modes: ['car'], duration: '~2.5h', roundTrip: '~5h', bulge: 0.30, place: 'Rainbow Mountain' },
+  ],
+
+  'cusco-archive': [
     // Day trip out to Ollantaytambo and back, a loop from the Cusco base.
     { day: 'Nov 8', color: '#2563eb', from: 'cusco', stops: ['ollanta'], to: 'cusco', modes: ['bus'], duration: '~2h/leg', roundTrip: '~4h total', bulge: [0.25, 0.25], place: 'Ollantaytambo' },
     // Sacred Valley day trip via Urubamba (horseback to the salt mines /
@@ -333,13 +399,14 @@ const MAP_LEGS = {
 // the Original plan, so it lists both stretches.
 const MAP_STAYS = {
   original: { cusco: 'Nov 7 & 11–12', ollanta: 'Nov 8–9', aguas: 'Nov 10' },
-  cusco: { cusco: 'Nov 7–9 & 11–12', aguas: 'Nov 10' },
+  cusco: { cusco: 'Nov 7–9 & 11–13', aguas: 'Nov 10' },
+  'cusco-archive': { cusco: 'Nov 7–9 & 11–12', aguas: 'Nov 10' },
   ollanta: { ollanta: 'Nov 7–9', aguas: 'Nov 10', cusco: 'Nov 11–13' },
 };
 
 // The single base with the most nights on this itinerary — flagged with a
 // small home icon so it reads as "home base" at a glance.
-const MAP_HOME = { original: 'cusco', cusco: 'cusco', ollanta: 'ollanta' };
+const MAP_HOME = { original: 'cusco', cusco: 'cusco', 'cusco-archive': 'cusco', ollanta: 'ollanta' };
 
 // Days that involve no travel at all — you're just staying/exploring at a
 // base you're already at (e.g. Nov 8 in Ollantaytambo). These get a plain
@@ -348,7 +415,9 @@ const MAP_HOME = { original: 'cusco', cusco: 'cusco', ollanta: 'ollanta' };
 const MAP_STAY_DAYS = {
   // Nov 7 is arrival day — land in Cusco, no further local travel that day.
   original: [{ day: 'Nov 7', at: 'cusco' }],
-  cusco: [{ day: 'Nov 7', at: 'cusco' }],
+  // Nov 8 is now also a stay-only day (easy day exploring Cusco archaeological sites).
+  cusco: [{ day: 'Nov 7', at: 'cusco' }, { day: 'Nov 8', at: 'cusco' }],
+  'cusco-archive': [{ day: 'Nov 7', at: 'cusco' }],
   ollanta: [{ day: 'Nov 8', at: 'ollanta' }],
 };
 
@@ -754,8 +823,17 @@ function init() {
           }
         }, 0);
       }
+      archiveMenuEl.classList.remove('open');
     });
   });
+
+  const archiveTrigger = document.getElementById('archiveTrigger');
+  const archiveMenuEl = document.getElementById('archiveMenu');
+  archiveTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    archiveMenuEl.classList.toggle('open');
+  });
+  document.addEventListener('click', () => archiveMenuEl.classList.remove('open'));
 }
 
 document.addEventListener('DOMContentLoaded', init);

@@ -11,32 +11,22 @@
 
 <header class="site-header">
   <h1>Peru Trip — Nov 2026</h1>
-  <p class="subtitle">Three itinerary options: the original plan, a Cusco-based version, and an Ollantaytambo-based version.</p>
+  <p class="subtitle">Itinerary options: a Cusco-based version and an Ollantaytambo-based version.</p>
   <div class="tabs" id="tabs">
-    <button class="tab-btn active" data-tab="original">Original Plan</button>
-    <button class="tab-btn" data-tab="cusco">Cusco Base</button>
+    <button class="tab-btn active" data-tab="cusco">Cusco Base</button>
     <button class="tab-btn" data-tab="ollanta">Ollantaytambo Base</button>
+    <div class="archive-dropdown">
+      <button class="archive-trigger" id="archiveTrigger">Archived ▾</button>
+      <div class="archive-menu" id="archiveMenu">
+        <button class="tab-btn archive-item" data-tab="original">Original Plan</button>
+        <button class="tab-btn archive-item" data-tab="cusco-archive">Cusco Base (7/26/26)</button>
+      </div>
+    </div>
   </div>
 </header>
 
 <main>
-  <section class="tab-panel active" id="panel-original">
-    <div id="summary-original"></div>
-    <h2 class="section-heading">Route at a glance</h2>
-    <div id="route-original"></div>
-    <div class="itinerary-columns">
-      <div class="map-col">
-        <h2 class="section-heading">Map</h2>
-        <div id="map-original"></div>
-      </div>
-      <div class="timeline-col">
-        <h2 class="section-heading">Day-by-day itinerary</h2>
-        <div class="timeline" id="timeline-original"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="tab-panel" id="panel-cusco">
+  <section class="tab-panel active" id="panel-cusco">
     <div id="summary-cusco"></div>
     <h2 class="section-heading">Route at a glance</h2>
     <div id="route-cusco"></div>
@@ -64,6 +54,38 @@
       <div class="timeline-col">
         <h2 class="section-heading">Day-by-day itinerary</h2>
         <div class="timeline" id="timeline-ollanta"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-cusco-archive">
+    <div id="summary-cusco-archive"></div>
+    <h2 class="section-heading">Route at a glance</h2>
+    <div id="route-cusco-archive"></div>
+    <div class="itinerary-columns">
+      <div class="map-col">
+        <h2 class="section-heading">Map</h2>
+        <div id="map-cusco-archive"></div>
+      </div>
+      <div class="timeline-col">
+        <h2 class="section-heading">Day-by-day itinerary</h2>
+        <div class="timeline" id="timeline-cusco-archive"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-original">
+    <div id="summary-original"></div>
+    <h2 class="section-heading">Route at a glance</h2>
+    <div id="route-original"></div>
+    <div class="itinerary-columns">
+      <div class="map-col">
+        <h2 class="section-heading">Map</h2>
+        <div id="map-original"></div>
+      </div>
+      <div class="timeline-col">
+        <h2 class="section-heading">Day-by-day itinerary</h2>
+        <div class="timeline" id="timeline-original"></div>
       </div>
     </div>
   </section>
